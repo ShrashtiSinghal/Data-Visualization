@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<meta charset="UTF-8">
+		
+		<link rel="stylesheet" href="style.css">
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="http://d3js.org/d3.v3.js" charset="utf-8"></script>
+		<!--below 4 lines for choropeth map-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+		<!--<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+		//<script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+		//<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.24.0/d3-legend.js"></script>
+		<script  type="text/javascript" src="d3.min.js"></script>-->
+		
+		
+		
+		
+		<!-- jQuery -->
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="jquery-1.11.3.js"></script>
+
+		<script src="jquery.fullPage.min.js"></script>
+		<link rel="stylesheet" href="jquery.fullPage.css">
+		
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		
+		<link href="https://fonts.googleapis.com/css?family=Raleway|Oxigen|Open+Sans" rel="stylesheet">
+		<!-- Open Sans & CSS -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400,300' rel='stylesheet' type='text/css'>
+			
+		<style>
+		</style>
+		
+	</head>
+	<body>
+		<div id="wrapper">
+		
+<!-- PAGE 1------------------------INTRODUCTION-------------------------------DESCRIPTION OF GRAPHS AND INSIGHTS-------------------------------------------------------------------------------->
+
+			<div class="section" id="sectionImage1" style="width:100%; height:100%; padding-left:3%; padding-right:1.5%;">
+				<div style="float: left; color: white; width: 40%;">
+					<div style="font-size: 35px; font-weight: bold; color:#8000ff">How is Cancer growing over the years in US?<br/></div>
+					<!--<p style="font-size: 25px; -webkit-margin-before: 0.2em; -webkit-margin-after: 0.2em; color:afeeee;">Cancer in Men VS Women </p><br/>--><br/>
+					<div class="bodyText"><div style="font-size: 20px; font-weight: bold; color:afeeee;"> Relation between count of Cancer Patients and other factors</div>
+					This project explores the connection between cancer patients counts and other related factors through various interactive visualizations. By interacting with the visualizations the viewer can draw his/her own inferences.</br></br>
+					
+					<div style="font-size: 20px; font-weight: bold; color:afeeee;">Cancer Count across US</div>
+					We will see the variation in number of patients diagnosed with cancer in different parts of US.
+					
+					<div style="font-size: 20px; font-weight: bold; color:afeeee;">How Age plays a role in Cancer </div>
+					We will compare the count of cancer patients on various age ranges through an interactive Bar-graph.
+					
+					<div style="font-size: 20px; font-weight: bold; color:afeeee;"></br>Cancer in Men VS Women</div>
+					By using a scatterplot and a vornoi diagram, we will see when we hover over an circle, what is the State name, what is the Cancer count in a particular year.
+					</br></br>
+					
+					<div style="font-size: 20px; font-weight: bold; color:afeeee;">Cancer Count from Years 2005 to 2014</div>
+					We will see the variation in number of patients diagnosed with cancer in different parts of US in various Years. </br></br>
+					
+					<div style="font-size: 20px; font-weight: bold; color:afeeee;">Visualize and Draw Inferences</div>
+					Over the next few slides we will have the opportunity to explore the data and interact with the visualizations.</div>
+				</div>				
+			</div>
+			
+
+<!-- PAGE 2------------------------MAP GRAPH-------------------------------STATES VS CANCER COUNT VS YEAR--------------------------------------------------------------------------------------->
+
+
+			<div class="section" style="width:100%; height:100%; padding-left:2.5%; padding-right:7%;">
+				<div style="float: left; width: 70%;">
+					<div style="padding-left: 140px; font-size: 20px; font-weight: bold; color:#ffffff">US Choropleth for Cancer<br/></div>
+					<div id="mapclass">
+					<h5 class="g-hed"></h5>
+					<p class="g-intro"></p>
+						<div class="g-chart" width="800" height="500"></div>
+							<div class="legend">
+								<div class="block" id="q0-9"></div>
+								<div class="block" id="q1-9"></div>
+								<div class="block" id="q2-9"></div>
+								<div class="block" id="q3-9"></div>
+								<div class="block" id="q4-9"></div>
+							</div>
+							<div class="g-source"><span class="g-source-bold"></span><span class="g-source-reg"></span></div>
+						</div>
+				</div>
+				
+				
+				<div style="float: right; width: 30%;">
+					<p style="font-size: 45px; font-weight: bold; color:#8000ff;">Cancer across States<br/></p>
+					<!--<p style="font-size: 16px; font-weight: bold; color:#ffffff;">Life Expectancy vs GDP in 2010 </p>-->
+					<p class="bodyText"; style="color:#ffffff";>
+					The map shows the number of Cancer Patients across different states of the US.  
+					The data is plotted over population. It shows there is still a significant difference between the number of Cancer Patients Diagnosed in different States. FurtherMore, If we dig deep down in the statics we will be able to figure out the lifestyle difference, population, food quality and various other factors responsible for variations in the number of Cancer patients, in different States of US.
+					</p>
+					<p style="font-size: 16px; font-weight: bold; color:#ffffff;">Interact with the Scatter Plot</p>
+					<p class="bodyText"; style="color:#ffffff";>Hover over your mouse over the Regions in California, Florida etc., these states have highest number of Cancer Patients. Viewer can draw his/her inferences based on this Choropleth. Hover your mouse over the states in the map to view the state cancer count. The cancer count corresponds to year 2013. </p>
+				</div>
+			</div>
+			
+
+<!-- PAGE 3------------------------BAR CHART-------------------------------AGE VS CANCER COUNT------------------------------------------------------------------------------------------------->
+
+
+			<div class="section" style="width:100%; height:100%; padding-left:3%; padding-right:1%;">
+				<div style="float: right; width: 70%; text-align: center;">
+					<div style="padding-right: 140px; font-size: 20px; font-weight: bold;color:#ffffff;">Age Factor VS Cancer Count<br/></div>
+					<div id="tooltip"></div>
+					<svg id="barchart1" width="800" height="500"></svg>
+					<div id="controls"></div>
+					<div id="controls2"></div>
+				</div>
+				<div style="float: left; width: 30%;">
+					<p style="font-size: 40px; font-weight: bold; color:#8000ff;">Does Age plays a role in Cancer?<br/><br/></p>
+					<p style="font-size: 20px; font-weight: bold; color:#ffffff;">Bar-graph age range vs Cancer Count</p>
+					<p class="bodyText"; style="font-size: 14px;  color:#ffffff;">Number of Cancer patients do vary in different age range.</p></br></br>
+					<p style="font-size: 20px; font-weight: bold; color:#ffffff;">Interact with Bar-graph and Button</p>
+					<p class="bodyText"; style="font-size: 14px; color:#ffffff;">Click on the Sort button to view Cancer Count for different age range in ascending or descending order. Hover your mouse over the bars to view the tooltip on Age range and Cancer Count.</p>
+				</div>			
+			</div>
+			
+
+<!-- PAGE 4------------------------SCATTER PLOT-------------------------------REGION VS STATE VS YEAR VS COUNT---------------------------------------------------------------------------------->
+			
+			<div class="section" style="width:100%; height:100%; padding-left:2.5%; padding-right:7%;">
+				<div style="float: left; width: 70%;">
+					<div style="padding-left: 100px; font-size: 20px; font-weight: bold;"></div>
+					<div id="cont" class="container-fluid text-center">
+						<div class="row scatter">
+							<h5 style="padding-right: 140px; font-size: 20px; font-weight: bold;color:#ffffff;">Cancer over Years</h5>
+							<!--<h6 style="color: #A6A6A6;">Hower over Voronoi clipped circles </h6>-->
+							<div class="col-sm-9">
+								<div id="chart"></div>
+							</div>
+							<div id = "legend" class="col-sm-3" style="padding-right: 0px; padding-left: 0px;">
+								<div class="legendTitle" style="font-size: 12px; color: ffffff;">US Divisions</div>
+								<div id="legend"></div>
+							</div>
+						</div>
+					</div>
+	
+				</div>
+				<div style="float: right; width: 30%;">
+					<p style="font-size: 45px; font-weight: bold; color:#8000ff;">Cancer Count in US Regions Over Years<br/></p>
+					<p style="font-size: 16px; font-weight: bold; color:#000000;">Life Expectancy vs GDP in 2010 </p>
+					<p class="bodyText"; style="font-size: 14px; color:#000000;">
+					We dive deeper into the relation between Life Expectancy and GDP by observing the scatter-plot and infer that with the per capita GDP increased in various countries, life expectancy increased across various countries and regions of the world in 2010. 
+					It looks like there is a correlation between these two elements, year by year GDP per capita grows and Life Expectancy increases. Clearly if you hover your mouse over the Regions in Africa, the countries there have a low life expectancy and low GDP. Viewer can draw his own inferences based on this scatterplot. 
+					</p></br></br>
+					<p style="font-size: 16px; font-weight: bold; color:#000000;">Interact with the Scatter Plot</p>
+					<p class="bodyText"; style="font-size: 14px; color:#000000;">Hover your mouse over the circles to view the country&#39;s life expectancy in years on y-axis and per capita GDP on x-axis. The size of the circles is proportional to GDP per capita to remark the difference in the graph. The Regions and countries within that region are shown in the legend. Hover your mouse over regions in the legend to view the countries in that region.</p>
+				</div>
+			</div>
+		
+<!-- PAGE 5------------------------OVERLAPPING BAR CHART-------------------------------MALE VS FEMALE CANCER COUNT------------------------------------------------------------------------------>
+
+
+			<div class="section" style="width:100%; height:100%; padding-left:3%; padding-right:1%;">
+				<div style="float: right; width: 70%; text-align: center;color:#ffffff;">
+					<div style="padding-right: 140px; font-size: 20px; font-weight: bold;">Cancer in Male VS Female from 2005 to 2014<br/></div>
+					
+					<div class="chart-wrapper" id="chart-line1"width="800" height="500"></div>
+		
+				</div>
+				<div style="float: left; width: 30%;">
+					<p style="font-size: 45px; font-weight: bold; color:#8000ff;">Cancer in Male VS Female<br/></p>
+					<p style="font-size: 20px; font-weight: bold; color:#000000;">Life Expectancy Across Income Groups</p>
+					<p class="bodyText"; style="font-size: 14px; color:#000000;">The data is clustered into four income groups as per the dataset – High Income, Upper Middle Income, Lower Middle Income and Low Income. We can observe that there is a significant difference in life expectancy across income groups across all years from 1960 to 2015. As both the Independent and Dependent Variables in this case are Quantitative Continuous, I have taken the line chart to represent the improvement in life expectancy over the years. </p>
+					<p style="font-size: 20px; font-weight: bold; color:#000000;">Interact with Income Groups</p>
+					<p class="bodyText"; style="font-size: 14px; color:#000000;">Hover over your mouse over the multi-line chart from left to right and vice versa and observe the life expectancy across the four income groups in the tool-tip. Use each point&#39;s tool-tip to get detailed information, just hover over the points in the graph and you can see the life expectancy across the income groups and that year.</p>
+				</div>	
+			</div>
+		
+
+
+<!-- PAGE 6------------------------ABOUT VISUALIZATION-------------------------------DESCRIPTION OF INTERACTIONS USED---------------------------------------------------------------------------->
+
+			<div class="section" style="width:100%; height:100%; padding-left:3%; padding-right:7%;">
+				<div style="float: right; width: 50%;">
+					<!--<div style="padding-left:6%;">
+						<p style="font-size: 15px; font-weight: bold; color:#ffffff;">&nbsp;</p>					
+						<p style="font-size: 16px; font-weight: bold; color:#ffffff;">Parameters</p>
+						<p class="bodyText"; style="color:#ffffff";>
+						Several parameters are included in the visualizations. In the bar-graph, there is a sort button that sorts the life expectancy across various regions in ascending and descending order. In the multiline graph as the user hovers his mouse over the line charts, he/she can see the year and the life expectancy across the four income groups. In the vornoi diagram as the user hovers the mouse over a circle, he/she can see the country, the per capita GDP and life expectancy for that country. The size of the circle represents the per capita GDP dollar amount for a country. 				
+						</p>
+						<p style="font-size: 16px; font-weight: bold; color:#ffffff;">Triggers</p>
+						<p class="bodyText"; style="color:#ffffff";>
+						There are several triggers that make the visualizations interactive and the user can play with the data by clicking on buttons, hovering over the line charts, bargraphs, vornoi diagrams. By selecting the values in the legends in the vornoi diagram, the viewer can filter the countries in that region and see the life expectancy of the countries of that region. By doing so the viewer can easily identify that the countries in African region have lower per capita GDP as well as lower life expectancy. </p>
+						<p class="bodyText"; style="color:#ffffff";>
+						User interface events are listed, along with a description of how possible user events are communicated to the viewer.
+						</p>
+					</div>-->
+				</div>
+				<div style="float: left; width: 50%;">
+					<p style="font-size: 40px; font-weight: bold; color:#8000ff;">About the visualization<br/></p>
+					<!--<p style="font-size: 16px; font-weight: bold; color:#ffffff;">The Narrative Visualization</p>
+					<p class="bodyText"; style="color:#ffffff";>					
+					Do wealthier countries live longer? - This narrative visualization follows an interactive slide show and is built with scenes, annotations, parameters, and triggers. 
+					The scenes follow a uniform template for visual consistency and are ordered to best convey the message that there is some correlation between Income and Life Expectancy across years from 1960 to 2015. 
+					Guidance is provided on each slide and viewer is able to explore the data through the visualizations.
+					</p>
+					<p style="font-size: 16px; font-weight: bold; color:#ffffff;">Scenes in the Visualization</p>
+					<p class="bodyText"; style="color:#ffffff";>
+					The narrative starts with a powerful world image and a question whether wealthier countries live longer. Following this, there are bar-graphs, multi-line charts and vornoi diagrams that explore the correlation between life expectancy across regions, across income groups and across GDP of a country respectively. 
+					The layout and any visual structure in these scenes makes a viewer wonder the power of data visualization and explore further. 
+					</p>
+					<p style="font-size: 16px; font-weight: bold; color:#ffffff;">Annotations</p>
+					<p class="bodyText"; style="color:#ffffff";>
+					The annotations follow a template for visual consistency and highlight specific data items or trends. At each visualization, there is a description indicating the annotations. The first scene has a bar-graph that shows the average life expectancy across regions of the world. After that each slide has annotations that guide the user to draw a conclusion and/or explore further in the data. 
+					All annotations are cleared on each slide and are independent of each other. All of them use the same font for visual consistency. When the user hovers over his mouse over the graphs, the tool-tips help navigate the data in the visualization. </p>-->
+				</div>			
+			</div>
+		
+
+
+<!-- PAGE 7------------------------ABOUT AUTHOR & REFERENCES-------------------------------HYPERLINKS---------------------------------------------------------------------------------------->
+
+			<div class="section" style="width:100%; height:100%; padding-left:12%; padding-right:6%;">
+				<div style="float: right; width: 40%;">
+					<!--<div style="padding-left:20%;">
+						<p style="font-size: 40px; font-weight: bold; color:#8000ff;">References</br></br></p>					
+						<!--<p style="font-size: 16px; font-weight: bold; color:#ffffff;">Links</p>
+						
+						<p class="bodyText"; style="color:#ffffff";>- <a href=https://github.com/alvarotrigo/fullPage.js>FullPage.js</a></br>
+						- <a href=http://data.worldbank.org/indicator/NY.GDP.PCAP.CD>Data from Worldbank on GDP Per Capita</a></br>
+						- <a href=http://data.worldbank.org/indicator/NY.GDP.PCAP.CD>Data from Worldbank on GDP Per Capita</a></br>
+						- <a href=http://data.worldbank.org/indicator/SP.DYN.LE00.IN>Data from Worldbank on Life Expectancy</a></br>
+						- <a href=https://bl.ocks.org/d3noob/4db972df5d7efc7d611255d1cc6f3c4f>Multiline graph</a></br>
+						- <a href=http://bl.ocks.org/nbremer/61cd485e399b6a71d5fb2b1072fbc6c1>Vornoi Scatterplot</a></br></p>
+					</div>-->
+				</div>
+				<div style="float: left; width: 44%;">
+					<p style="font-size: 40px; font-weight: bold; color:#8000ff;">About<br/><br/></p>
+					<p style="font-size: 16px; font-weight: bold; color:#ffffff;">D3 Project</p>
+					<p class="bodyText"; style="color:#ffffff";>CS 498: Data Visualization Project from University of Illinois Urbana-Champaign.</p></br>
+					<p style="font-size: 16px; font-weight: bold; color:#ffffff;">The author</p>
+					<p class="bodyText"; style="color:#ffffff";> Know more about the author: <a href=https://www.linkedin.com/in/shrashti-singhal-1869166b/>Shrashti Singhal</a></p></br>
+					<p style="font-size: 16px; font-weight: bold; color:#000000;">Disclaimer</p>
+					<p class="bodyText"; style="color:#000000";>This Visualization was made to satisfy the requirements of the Data Visualization Project for UIUC. All the code that was modified as a base to create some of the elements of the visualization is under the MIT Open License.</p>
+				</div>			
+			</div>
+		</div>
+		
+		
+<!-- SCRIPTS USED FOR GRAPHS----------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+		<a id="footer" href="#About">About this visualization</a>
+
+		//Choropeth
+	
+
+		//<script src="map.csv"></script>
+		<script src="map.js"></script>
+		
+		//Barchart
+		<script type="text/javascript" src = "barchartcanvas.js"></script>
+		
+		//Voronoi
+			//<script src="worldbank.js"></script>
+			<script src="ScatterPlot.js"></script>
+			<script src="script.js"></script>
+			//<script src="worldbank.js"></script>
+					
+		
+		// Multiline Chart
+		<script type="text/javascript">
+						d3.csv('multiline_data.csv', function(error, data) {
+						data.forEach(function (d) {
+							d.year = +d.year;
+							d.variableA = +d.variableA;
+							d.variableB = +d.variableB;
+							d.variableC = +d.variableC;
+							d.variableD = +d.variableD;
+						});
+
+						var chart = makeLineChart(data, 'year', {
+							'Low income': {column: 'Low income'},
+							'Lower middle income': {column: 'Lower middle income'},
+							'Upper middle income': {column: 'Upper middle income'},
+							'High income': {column: 'High income'}
+						}, {xAxis: 'Years', yAxis: 'Life Expectancy'});
+						chart.bind("#chart-line1");
+						chart.render();
+
+					});
+					</script>
+					<script src="multiline.js" charset="utf-8"></script>
+
+
+		
+			
+			
+<!-- ---------------------------------------Initialize fullpage.js --------------------------------------------------------------------------------------------------------------------------->
+		
+
+<script>
+			
+			$(document).ready(function() {
+				$('#wrapper').fullpage({
+					sectionsColor: ['#000000','#000000', '#000000', '#000000',  '#000000', '#000000', '#000000'],
+					navigation: true,
+					navigationPosition: 'right',
+					navigationTooltips: ['Introduction', 'Cancer across different States', 'Age VS Cancer Count ', 'Cancer Over the Years', 'Cancer in Men VS Women', 'About the Visualization', 'Author and Resources'],
+					anchors:['Intro', 'Map','Bar', 'Scatter', 'Line', 'About', 'Author'],
+					easingcss3: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)'
+					
+				});
+			});
+
+			
+		</script>
+	</body>
+</html>
