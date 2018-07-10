@@ -1,3 +1,15 @@
+p.bodyText{
+	text-align:left;
+}
+div.bodyText{
+	text-align:center;
+}
+p.bodyText1{
+	text-align:center;
+}
+div.bodyText1{
+	text-align:left;
+}
 #tooltip {
     opacity: 0;
     position: absolute;
@@ -123,6 +135,8 @@ body,html {
 
 
 .chart-wrapper {
+	width:800;
+	height:500;
     max-width: 950px;
     min-width: 304px;
     margin: 0 auto;
@@ -230,7 +244,7 @@ body,html {
 }
 
 #sectionImage1{
-    background-image: url(World-Map.jpg);
+    background-image: url(images/World-Map.jpg);
 }
 
 
@@ -247,7 +261,10 @@ body,html{
 	border: 1px solid #CCC;
 }
 
-
+.g-chart{
+	width:800;
+	height:500;
+}
 .g-hed {
   text-align: left;
   text-transform: uppercase;
