@@ -2,13 +2,13 @@
 <html lang="en">
 	<head>
 	<title> UIUC Project for Data Visualization Fall 2018</title>
-		<meta http-equiv="Content-Type" content="text_html"/>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		
 		<link rel="stylesheet" href="style.css">
 		<script src="https://d3js.org/d3.v4.min.js"></script>
 		<script src="http://d3js.org/d3.v3.js"></script>
 		
-		<!--below 4 lines for choropeth map-->
+		<!--below 3 lines for choropleth map-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
@@ -25,9 +25,7 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 		
-		<link href="https://fonts.googleapis.com/css?family=Raleway|Oxigen|Open+Sans" rel="stylesheet">
-		<!-- Open Sans & CSS -->
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:700,400,300' rel='stylesheet' type='text/css'>
+		
 		
 	</head>
 	
@@ -41,26 +39,25 @@
 
 			<div class="section" id="sectionImage1" style="width:100%; height:100%; padding-left:3%; padding-right:1.5%;">
 				<div style="float: left; color: white; width: 40%;">
-					<div style="font-size: 35px; font-weight: bold; color:#8000ff">How is Cancer growing over the years in US?<br></div>
-					<!--<p style="font-size: 25px; -webkit-margin-before: 0.2em; -webkit-margin-after: 0.2em; color:#1e488c;">Cancer in Men VS Women </p><br>--><br>
-					<div class="bodyText">
-					<div style="font-size: 20px; font-weight: bold; color:#1e488c"> Relation between count of Cancer Patients and other factors</div>
+					<div style="font-size: 35px; font-weight: bold; color:#8000ff">How is Cancer growing over the years in US?<br><br></div>
+					<div class="bodyText" align="left">
+					<div style="font-size: 20px; font-weight: bold; color:#ffffff"> Relation between count of Cancer Patients and other factors</div>
 					This project explores the connection between cancer patients counts and other related factors through various interactive visualizations. By interacting with the visualizations the viewer can draw his/her own inferences.<br><br>
 					
-					<div style="font-size: 20px; font-weight: bold; color:#1e488c">Cancer Count across US</div>
+					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >Cancer Count across US</div>
 					We will see the variation in number of patients diagnosed with cancer in different parts of US.<br><br>
 					
-					<div style="font-size: 20px; font-weight: bold; color:#1e488c">How Age plays a role in Cancer </div>
+					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >How Age plays a role in Cancer </div>
 					We will compare the count of cancer patients on various age ranges through an interactive Bar-graph.
 					
-					<div style="font-size: 20px; font-weight: bold; color:#1e488c"><br>Cancer in Men VS Women</div>
+					<div style="font-size: 20px; font-weight: bold; color:#ffffff" ><br>Cancer in Men VS Women</div>
 					By using a scatterplot and a vornoi diagram, we will see when we hover over an circle, what is the State name, what is the Cancer count in a particular year.
 					<br><br>
 					
-					<div style="font-size: 20px; font-weight: bold; color:#1e488c">Cancer Count from Years 2005 to 2014</div>
+					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >Cancer Count from Years 2005 to 2014</div>
 					We will see the variation in number of patients diagnosed with cancer in different parts of US in various Years. <br><br>
 					
-					<div style="font-size: 20px; font-weight: bold; color:#1e488c">Visualize and Draw Inferences</div>
+					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >Visualize and Draw Inferences</div>
 					Over the next few slides we will have the opportunity to explore the data and interact with the visualizations.</div>
 				</div>				
 			</div>
@@ -90,13 +87,12 @@
 				
 				<div style="float: right; width: 30%;">
 					<p style="font-size: 45px; font-weight: bold; color:#8000ff">Cancer across States<br></p>
-					<!--<p style="font-size: 16px; font-weight: bold; color:#ffffff;">Life Expectancy vs GDP in 2010 </p>-->
-					<p class="bodyText" style="color:#ffffff">
+					<p class="bodyText" style="color:#ffffff" align="left">
 					The map shows the number of Cancer Patients across different states of the US.  
 					The data is plotted over population. It shows there is still a significant difference between the number of Cancer Patients Diagnosed in different States. FurtherMore, If we dig deep down in the statics we will be able to figure out the lifestyle difference, population, food quality and various other factors responsible for variations in the number of Cancer patients, in different States of US.
-					</p>
-					<p style="font-size: 16px; font-weight: bold; color:#ffffff;">Interact with the Scatter Plot</p>
-					<p class="bodyText" style="color:#ffffff">Hover over your mouse over the Regions in California, Florida etc., these states have highest number of Cancer Patients. Viewer can draw his/her inferences based on this Choropleth. Hover your mouse over the states in the map to view the state cancer count. The cancer count corresponds to year 2013. </p>
+					</p><br><br>
+					<p style="font-size: 16px; font-weight: bold; color:#ffffff" >Interact with the Scatter Plot</p>
+					<p class="bodyText" style="color:#ffffff" align="left">Hover over your mouse over the Regions in California, Florida etc., these states have highest number of Cancer Patients. Viewer can draw his/her inferences based on this Choropleth. Hover your mouse over the states in the map to view the state cancer count. The cancer count corresponds to year 2013. </p>
 				</div>
 			</div>
 			
@@ -130,7 +126,6 @@
 					<div id="cont" class="container-fluid text-center">
 						<div class="row scatter">
 							<h5 style="padding-right: 140px; font-size: 20px; font-weight: bold;color:#ffffff">Cancer over Years</h5>
-							<!--<h6 style="color: #A6A6A6;">Hower over Voronoi clipped circles </h6>-->
 							<div class="col-sm-9">
 								<div id="chart"></div>
 							</div>
@@ -179,8 +174,8 @@
 			<div class="section" style="width:100%; height:100%; padding-left:7%; padding-right:7%;">
 			<p style="font-size: 40px; font-weight: bold; color:#8000ff" align="center">About the visualization<br></p>
 				
-				<div style="float: left; width: 40%;">
-				<p style="font-size: 20px; font-weight: bold; color:#ffffff" align="center">Motivation</p>
+				<div style="float: left; width: 35%;"><br>
+				<p style="font-size: 25px; font-weight: bold; color:#ffffff" align="center">Motivation</p>
 					<p class="bodyText" style="color:#ffffff" align="left">					
 					The motivation behind this topic is to find the answers of the following questions: <br>
 					*Is Cancer growing over the years in US?<br>
@@ -190,38 +185,39 @@
 					This interactive slide show will help the user to infer the answer of the above questions by himself/herself.<br> 
 					</p><br><br>,<br>
 					
-					<p style="font-size: 20px; font-weight: bold; color:#ffffff" align="center">Tools and Technology Used</p>
+					<p style="font-size: 25px; font-weight: bold; color:#ffffff" align="center">Tools and Technology Used</p>
 					<p class="bodyText" style="color:#ffffff" align="left">
-					 Programming	:	D3.js v4, HTML, CSS<br>
-					 DataBase		:	csv, json<br>
-					 External APIs	:	Google fonts, Cloudflare maps<br>
-					 Website Publish: 	Githib <br>
+					 <span style="font-weight: bold;font-size: 18px">Programming	:</span>	D3.js v4, HTML, CSS<br>
+					 <span style="font-weight: bold;font-size: 18px">DataBase		:</span>	csv, json<br>
+					 <span style="font-weight: bold;font-size: 18px">External APIs	:</span>	Google fonts, Cloudflare maps<br>
+					 <span style="font-weight: bold;font-size: 18px">Website Publish:</span> 	Githib <br>
 					 
 					</p><br>
 					
 					
 				</div>
 				
-				<div style="float: right; width: 40%">
-					<div style="padding-left:6%">
-						<p style="font-size: 20px; font-weight: bold; color:#ffffff" align="center">Visualization Elements</p>
+				<div style="float: right; width: 55%"><br>
+					<div style="padding-left:2%">
+						<p style="font-size: 25px; font-weight: bold; color:#ffffff" align="center">Visualization Elements</p>
 						<p class="bodyText" style="color:#ffffff" align="left">
-						Types of Graphs: 	Bar, Choropleth, Line, Scatter Plot<br>
-						Filters:			By selecting the values in the legends in the vornoi scatter plot diagram, the viewer can filter the countries in that division<br>
-						Parameters:			In the bar-graph, there is a sort button that sorts the age with respect to highest count of cancer patients in ascending and descending order.<br>
-						Annotations:		All annotations are cleared on each slide and are independent of each other.<br>
-						Triggers:			In the vornoi diagram as the user hovers the mouse over a circle, he/she can see the country, count and year. The size of the circle represents the count of cancer patients.<br>
-						ToolTips:			When the user hovers over his mouse over the graphs, the tool-tips help navigate the data in the visualization.<br>
-						Theme:				The scenes follow a unique theme, which called a dark theme. Dark theme are less tiring on the eyes of users than bright white backgrounds. The theme is uniform for visual consistency.<br>
+						<span style="font-weight: bold;font-size: 18px">Types of Graphs:</span> 	Bar, Choropleth, Line, Scatter Plot<br>
+						<span style="font-weight: bold;font-size: 18px">Filters:</span>		By selecting the values in the legends in the vornoi scatter plot diagram, the viewer can filter the countries in that division<br>
+						<span style="font-weight: bold;font-size: 18px">Parameters:</span>			In the bar-graph, there is a sort button that sorts the age with respect to highest count of cancer patients in ascending and descending order.<br>
+						<span style="font-weight: bold;font-size: 18px">Annotations:</span>		All annotations are cleared on each slide and are independent of each other.<br>
+						<span style="font-weight: bold;font-size: 18px">Triggers:</span>			In the vornoi diagram as the user hovers the mouse over a circle, he/she can see the country, count and year. The size of the circle represents the count of cancer patients.<br>
+						<span style="font-weight: bold;font-size: 18px">ToolTips:</span>			When the user hovers over his mouse over the graphs, the tool-tips help navigate the data in the visualization.<br>
+						<span style="font-weight: bold;font-size: 18px">Theme:</span>				The scenes follow a unique theme, which called a dark theme. Dark theme are less tiring on the eyes of users than bright white backgrounds. The theme is uniform for visual consistency.<br>
 					
 						</p><br><br>
-						<p style="font-size: 20px; font-weight: bold; color:#ffffff" align="center">Conclusion</p>
+						<p style="font-size: 25px; font-weight: bold; color:#ffffff" align="center">Conclusion</p>
 						<p class="bodyText" style="color:#ffffff" align="left">
 						* Cancer is growing in US per 1000 of population. But the growth is not exponential.<br>
 						* There were more men suffering from cancer than women in 2005.<br>
 						* By 2014, more women are suffering from Cancer.<br>
 						* California, Texas, Florida have the highest number of cancer patients.<br>
 						* States close to coast have more cancer patients. <br>
+						* Most people are diagnosed with Cancer at the age of 50 -60 years<br>
 						</p>
 					</div>
 				</div>
@@ -246,10 +242,11 @@
 					To access the project code:<a href= https://github.com/ShrashtiSinghal/Shrashti_UIUC_DV.github.io/>GitHub</a></p><br>
 					
 					<p style="font-size: 20px; font-weight: bold; color:#ffffff">The Author</p>
-					<p class="bodyText" style="color:#ffffff"> The author of this project is SHRASHTI SINGHAL. <br>
+					<p class="bodyText" style="color:#ffffff"> The author of this project is <span style="font-weight: bold">SHRASHTI SINGHAL.</span> <br>
 					Know more about the author:<br>
 					<a href=https://www.linkedin.com/in/shrashti-singhal-1869166b/>	LinkedIn </a> <br>
-					<a href=https://github.com/ShrashtiSinghal/>GitHub </a>
+					<a href=https://github.com/ShrashtiSinghal/>GitHub </a><br>
+					<a href=https://public.tableau.com/profile/shrashti.singhal#!/>Tableau Public</a>
 					</p><br>
 					
 					<p class="bodyText" style="color:#ffffff"></p>
@@ -271,23 +268,19 @@
 
 		<a id="footer" href="#About">About this visualization</a>
 
-		//Choropeth
-	
-
-		//<script src="map.csv"></script>
+		<!--Choropeth-->
 		<script src="map.js"></script>
 		
-		//Barchart
+		
+		<!--Barchart-->
 		<script src = "barchartcanvas.js"></script>
 		
-		//Voronoi
-			//<script src="worldbank.js"></script>
+		<!--ScatterPlot-->
 			<script src="ScatterPlot.js"></script>
 			<script src="script.js"></script>
-			//<script src="worldbank.js"></script>
 					
 		
-		// Multiline Chart
+		<!--Line Graph-->
 		<script>
 						d3.csv('multiline_data.csv', function(error, data) {
 						data.forEach(function (d) {
