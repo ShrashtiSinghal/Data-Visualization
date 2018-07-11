@@ -44,21 +44,23 @@
 					<div style="font-size: 20px; font-weight: bold; color:#ffffff"> Relation between count of Cancer Patients and other factors</div>
 					This project explores the connection between cancer patients counts and other related factors through various interactive visualizations. By interacting with the visualizations the viewer can draw his/her own inferences.<br><br>
 					
-					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >Cancer Count across US</div>
-					We will see the variation in number of patients diagnosed with cancer in different parts of US.<br><br>
+					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >Visualize and Draw Inferences</div>
+					Over the next few slides we will have the opportunity to explore the data and interact with the visualizations.<br><br><br>
 					
-					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >How Age plays a role in Cancer </div>
-					We will compare the count of cancer patients on various age ranges through an interactive Bar-graph.
+					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >*Cancer Count across US</div>
+					We will see the variation in number of patients diagnosed with cancer in different parts of US.<br>
 					
-					<div style="font-size: 20px; font-weight: bold; color:#ffffff" ><br>Cancer in Men VS Women</div>
-					By using a scatterplot and a vornoi diagram, we will see when we hover over an circle, what is the State name, what is the Cancer count in a particular year.
-					<br><br>
+					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >*How Age plays a role in Cancer </div>
+					We will compare the count of cancer patients on various age ranges through an interactive Bar-graph.<br>
 					
-					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >Cancer Count from Years 2005 to 2014</div>
+					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >*Cancer in Men VS Women</div>
+					By using a scatterplot and a vornoi diagram, we will see when we hover over an circle, what is the State name, what is the Cancer count in a particular year.<br>
+					
+					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >*Cancer Count from Years 2005 to 2014</div>
 					We will see the variation in number of patients diagnosed with cancer in different parts of US in various Years. <br><br>
 					
-					<div style="font-size: 20px; font-weight: bold; color:#ffffff" >Visualize and Draw Inferences</div>
-					Over the next few slides we will have the opportunity to explore the data and interact with the visualizations.</div>
+					
+					</div>
 				</div>				
 			</div>
 			
@@ -146,7 +148,7 @@
 				</div>
 			</div>
 		
-<!-- PAGE 5______________OVERLAPPING BAR CHART______________MALE VS FEMALE CANCER COUNT__________________________________________-->
+<!-- PAGE 5______________MULTILINE BAR CHART______________MALE VS FEMALE CANCER COUNT__________________________________________-->
 
 
 			<div class="section" style="width:100%; height:100%; padding-left:3%; padding-right:1%">
@@ -157,11 +159,10 @@
 		
 				</div>
 				<div style="float: left; width: 30%;">
-					<p class="bodyText" style="font-size: 45px; font-weight: bold; color:#8000ff">Cancer in Male VS Female<br></p>
-					<p class="bodyText" style="font-size: 20px; font-weight: bold; color:#000000">Life Expectancy Across Income Groups</p>
-					<p class="bodyText" style="font-size: 14px; color:#000000">The data is clustered into four income groups as per the dataset – High Income, Upper Middle Income, Lower Middle Income and Low Income. We can observe that there is a significant difference in life expectancy across income groups across all years from 1960 to 2015. As both the Independent and Dependent Variables in this case are Quantitative Continuous, I have taken the line chart to represent the improvement in life expectancy over the years. </p>
-					<p class="bodyText" style="font-size: 20px; font-weight: bold; color:#000000">Interact with Income Groups</p>
-					<p class="bodyText" style="font-size: 14px; color:#000000">Hover over your mouse over the multi-line chart from left to right and vice versa and observe the life expectancy across the four income groups in the tool-tip. Use each point&#39;s tool-tip to get detailed information, just hover over the points in the graph and you can see the life expectancy across the income groups and that year.</p>
+					<p class="bodyText" style="font-size: 45px; font-weight: bold; color:#8000ff">Cancer in Male VS Female<br><br></p>
+					<p class="bodyText" style="font-size: 14px; color:#ffffff">Significant differences are visible in number of female and male diagnosed over the years 2005 to 2014.<br> In 2005, more men were diagnosed with Cancer than women. By 2014 more women were diagnosed with Cancer than men.</p><br><br>
+					<p class="bodyText" style="font-size: 20px; font-weight: bold; color:#ffffff">Interact with Income Groups</p>
+					<p class="bodyText" style="font-size: 14px; color:#ffffff">Hover over your mouse over the multi-line chart from left to right and vice versa and observe the count of Cancer Patients across the years 2005 to 2014.</p>
 				</div>	
 			</div>
 		
@@ -283,18 +284,16 @@
 						d3.csv('multiline_data.csv', function(error, data) {
 						data.forEach(function (d) {
 							d.year = +d.year;
-							d.variableA = +d.variableA;
-							d.variableB = +d.variableB;
-							d.variableC = +d.variableC;
-							d.variableD = +d.variableD;
+							//d.count=+d.count;
+							//d.variableA = +d.variableA;
+							//d.variableB = +d.variableB;
+							//d.variableC = +d.variableC;
+							//d.variableD = +d.variableD;
 						});
-
 						var chart = makeLineChart(data, 'year', {
-							'Low income': {column: 'Low income'},
-							'Lower middle income': {column: 'Lower middle income'},
-							'Upper middle income': {column: 'Upper middle income'},
-							'High income': {column: 'High income'}
-						}, {xAxis: 'Years', yAxis: 'Life Expectancy'});
+							'Male': {column: 'Male'},
+							'Female': {column: 'Female'},
+						}, {xAxis: 'Years', yAxis: 'Count of Cancer Patients'});
 						chart.bind("#chart-line1");
 						chart.render();
 
