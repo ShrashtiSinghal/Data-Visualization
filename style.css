@@ -73,14 +73,14 @@ div.bodyText1{
 		
 			
 	.legendCircle {
-			stroke-width:1;
+			stroke-width:1px;
 			stroke:#999;
-			stroke-dasharray:2 2;
+			stroke-dasharray:2px 2px;
 			fill:none;
 		}
 
 		.legendLine {
-			stroke-width: 1;
+			stroke-width: 1px;
 			stroke: #D1D1D1;
 			shape-rendering: crispEdges;
 		}
@@ -99,10 +99,10 @@ div.bodyText1{
 		}
 		
 		@media (min-width: 500px) {
-		  .col-sm-3, .col-sm-9, {
+		  .col-sm-3, .col-sm-9{
 			float: left;
 		  }
-		  .col-sm-9,{
+		  .col-sm-9{
 			width: 75%;
 		  }
 		  .col-sm-3, col-sm-10 {
@@ -130,17 +130,17 @@ body,html {
 	padding: 0;
 	font-family: "Arial", sans-serif;
 	font-size: 0.95em;
-	text-align: left-side;
+	text-align: left;
 }
 
 
 .chart-wrapper {
-	width:800;
-	height:500;
+	width:900px;
+	height:550px;
     max-width: 950px;
     min-width: 304px;
     margin: 0 auto;
-    background-color: #FAF7F7;
+    background-color: #000000;
 }
 
 .chart-wrapper .inner-wrapper {
@@ -162,6 +162,7 @@ body,html {
 .chart-wrapper text {
   font-family: sans-serif;
   font-size: 11px;
+  fill: #ffffff;
 }
 
 .chart-wrapper p {
@@ -172,9 +173,9 @@ body,html {
 
 .chart-wrapper .axis path,
 .chart-wrapper .axis line {
-    fill: none;
-    stroke: #1F1F2E;
-    stroke-opacity: 0.7;
+    fill:none;
+    stroke: #ffffff;
+    stroke-opacity: 1;
     shape-rendering: crispEdges;
 
 }
@@ -195,6 +196,7 @@ body,html {
     flex-wrap: wrap;
     font-size: 16px;
     padding: 10px 40px;
+	
 }
 .chart-wrapper .legend > div {
     margin: 0px 25px 10px 0px;
@@ -225,7 +227,7 @@ body,html {
   fill: crimson;
   stroke: crimson;
   stroke-width: 2px;
-  fill-opacity: 15%;
+  fill-opacity: 0.15;
 }
 .chart-wrapper .focus rect {
     fill: lightblue;
@@ -234,8 +236,8 @@ body,html {
 }
 .chart-wrapper .focus.line {
     stroke: steelblue;
-    stroke-dasharray: 2,5;
-    stroke-width: 2;
+    stroke-dasharray: 2px 5px;
+    stroke-width: 2px;
     opacity: 0.5;
 }
 @media (max-width:500px){
@@ -262,8 +264,8 @@ body,html{
 }
 
 .g-chart{
-	width:800;
-	height:500;
+	width:800px;
+	height:500px;
 }
 .g-hed {
   text-align: left;
