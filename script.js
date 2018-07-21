@@ -26,15 +26,13 @@ var opacityCircles = 0.7,
 
 //Set the color for each region
 var color = d3.scale.ordinal()
-					.range(["#EFB605", "#E58903", "#E01A25", "#C20049", "#991C71", "#66489F", "#2074A0", "#10A66E", "#7EB852"])
-					.domain(["Pacific", "East South Cental", "Mountain", "New England", 
-							 "South Atlantic", "East North Central", "West North Central", "Mid-Atlantic", "West South Central"]);
-							  
+					.range(["#EFB605", "#E01A25", "#66489F", "#7EB852", "#2074A0", "#10A66E"])
+					.domain(["Lip, oral cavity, & pharynx", "Esophagus", "Colon & rectum", "Liver", "Larynx", "Female breast"]);
+					
 //Set the new x axis range
 var xScale = d3.scale.linear()
 	.range([0, width])
-	//.domain([100,2e5]); //I prefer this exact scale over the true range and then using "nice"
-	.domain(d3.extent(countries, function(d) { return d.Year; }))
+	.domain(d3.extent(countries, function(d) { return d.Population; }))
 	.nice();
 //Set new x-axis
 var xAxis = d3.svg.axis()
@@ -56,7 +54,7 @@ wrapper.append("g")
 //Set the new y axis range
 var yScale = d3.scale.linear()
 	.range([height,0])
-	.domain(d3.extent(countries, function(d) { return d.Age; }))
+	.domain(d3.extent(countries, function(d) { return d.Count; }))
 	.nice();	
 var yAxis = d3.svg.axis()
 	.orient("left")
@@ -84,7 +82,7 @@ wrapper.append("g")
 	.attr("text-anchor", "end")
 	.style("font-size", (mobileScreen ? 8 : 12) + "px")
 	.attr("transform", "translate(" + width + "," + (height - 10) + ")")
-	.text("Year Of Diagnosis");
+	.text("Population in Millions");
 
 //Set up y axis label
 wrapper.append("g")
@@ -93,7 +91,7 @@ wrapper.append("g")
 	.attr("text-anchor", "end")
 	.style("font-size", (mobileScreen ? 8 : 12) + "px")
 	.attr("transform", "translate(18, 0) rotate(-90)")
-	.text("Age of Patients");
+	.text("Count of Patients");
 
 ////////////////////////////////////////////////////////////// 
 //////////////////// Set-up voronoi ////////////////////////// 
@@ -104,8 +102,8 @@ wrapper.append("g")
 //The clip extent will make the boundaries end nicely along the chart area instead of splitting up the entire SVG
 //(if you do not do this it would mean that you already see a tooltip when your mouse is still in the axis area, which is confusing)
 var voronoi = d3.geom.voronoi()
-	.x(function(d) { return xScale(d); })
-	.y(function(d) { return yScale(d).Year; });
+	.x(function(d) { return xScale(d).Population; })
+	.y(function(d) { return yScale(d).Count; });
 	//.clipExtent([[100, 100], [width, height]]);
 
 var voronoiCells = voronoi(countries);
@@ -122,10 +120,10 @@ clipWrapper.selectAll(".clip")
 	.data(voronoiCells)
 	.enter().append("clipPath")
   	.attr("class", "clip")
-  	.attr("id", function(d) { return "clip-" + d.State; })
+  	.attr("id", function(d) { return "clip-" + d.Year; })
   	.append("path")
-  	.attr("class", "clip-path-circle");
-  	//.attr("d", function(d) { return "M" + d.join(",") + "Z"; });
+  	.attr("class", "clip-path-circle")
+  	.attr("d", function(d) { return "M" + d.join(",") + "Z"; });
 
 //Initiate a group element for the circles	
 var circleClipGroup = wrapper.append("g")
@@ -135,11 +133,11 @@ var circleClipGroup = wrapper.append("g")
 var circlesOuter = circleClipGroup.selectAll(".circle-wrapper")
 	.data(countries.sort(function(a,b) { return b.Count > a.Count; }))
 	.enter().append("circle")
-	.attr("class", function(d,i) { return "circle-wrapper " + d.State; })
-	.attr("clip-path", function(d) { return "url(#clip-" + d.State + ")"; })
-    .style("clip-path", function(d) { return "url(#clip-" + d.State + ")"; })
-	.attr("cx", function(d) {return xScale(d.Year);})
-	.attr("cy", function(d) {return yScale(d.Age);})
+	.attr("class", function(d,i) { return "circle-wrapper " + d.Year; })
+	.attr("clip-path", function(d) { return "url(#clip-" + d.Population + ")"; })
+    .style("clip-path", function(d) { return "url(#clip-" + d.Count + ")"; })
+	.attr("cx", function(d) {return xScale(d.Population);})
+	.attr("cy", function(d) {return yScale(d.Count);})
 	.attr("r", maxDistanceFromPoint)
 	.on("mouseover", showTooltip)
 	.on("mouseout",  removeTooltip);;
@@ -156,12 +154,12 @@ var circleGroup = wrapper.append("g")
 circleGroup.selectAll("countries")
 	.data(countries.sort(function(a,b) { return b.Count > a.Count; })) //Sort so the biggest circles are below
 	.enter().append("circle")
-		.attr("class", function(d,i) { return "countries " + d.State; })
-		.attr("cx", function(d) {return xScale(d.Year);})
-		.attr("cy", function(d) {return yScale(d.Age);})
+		.attr("class", function(d,i) { return "countries " + d.Type; })
+		.attr("cx", function(d) {return xScale(d.Population);})
+		.attr("cy", function(d) {return yScale(d.Count);})
 		.attr("r", function(d) {return rScale(d.Count);})
 		.style("opacity", opacityCircles)
-		.style("fill", function(d) {return color(d.Divisions);});
+		.style("fill", function(d) {return color(d.Type);});
 			
 ///////////////////////////////////////////////////////////////////////////
 ///////////////////////// Create the Legend////////////////////////////////
@@ -218,7 +216,7 @@ if (!mobileScreen) {
 	var bubbleSizeLegend = legendWrapper.append("g")
 							.attr("transform", "translate(" + (legendWidth/2 - 30) + "," + (color.domain().length*rowHeight + 20) +")");
 	//Draw the bubble size legend
-	bubbleLegend(bubbleSizeLegend, rScale, legendSizes = [1e11,3e12,1e13], legendName = "US Divisions");		
+	bubbleLegend(bubbleSizeLegend, rScale, legendSizes = [1e11,3e12,1e13], legendName = "Type US");		
 }//if !mobileScreen
 else {
 	d3.select("#legend").style("display","none");
@@ -313,7 +311,7 @@ function selectLegend(opacity) {
 		var chosen = color.domain()[i];
 			
 		wrapper.selectAll(".countries")
-			.filter(function(d) { return d.Divisions != chosen; })
+			.filter(function(d) { return d.Type != chosen; })
 			.transition()
 			.style("opacity", opacity);
 	  };
@@ -327,7 +325,7 @@ function selectLegend(opacity) {
 function removeTooltip (d, i) {
 
 	//Save the chosen circle (so not the voronoi)
-	var element = d3.selectAll(".countries."+d.State);
+	var element = d3.selectAll(".countries."+d.Type);
 		
 	//Fade out the bubble again
 	element.style("opacity", opacityCircles);
@@ -349,7 +347,7 @@ function removeTooltip (d, i) {
 function showTooltip (d, i) {
 	
 	//Save the chosen circle (so not the voronoi)
-	var element = d3.selectAll(".countries."+d.State);
+	var element = d3.selectAll(".countries."+d.Type);
 	
 	//Define and show the tooltip
 	$(element).popover({
@@ -358,7 +356,7 @@ function showTooltip (d, i) {
 		trigger: 'manual',
 		html : true,
 		content: function() { 
-			return "<span style='font-size: 11px; text-align: center;'>" + d.State + "</span>"; }
+			return "<span style='font-size: 11px; text-align: center;'>" + d.Type + "</span>"; }
 	});
 	$(element).popover('show');
 
@@ -393,7 +391,7 @@ function showTooltip (d, i) {
 		.style("fill", color)
 		.style("opacity",  0)
 		.style("text-anchor", "middle")
-		.text( "$ " + d3.format(".2s")(d.Year) )
+		.text( d3.format(".2s")(d.Population) )
 		.transition().duration(200)
 		.style("opacity", 0.5);
 
@@ -419,7 +417,7 @@ function showTooltip (d, i) {
 		.style("fill", color)
 		.style("opacity",  0)
 		.style("text-anchor", "end")
-		.text( d3.format(".1f")(d.Age) )
+		.text( d3.format(".1f")(d.Count) )
 		.transition().duration(200)
 		.style("opacity", 0.5);	
 					
