@@ -259,8 +259,8 @@ body,html{
 	text-align: center;
 }
 #chart{
-	background-color: #ff8080;
-	border: 1px solid #CCC;
+	background-color: #000000;
+	border: 1px solid #000000;
 }
 
 .g-chart{
