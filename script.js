@@ -82,6 +82,7 @@ wrapper.append("g")
 	.attr("text-anchor", "end")
 	.style("font-size", (mobileScreen ? 8 : 12) + "px")
 	.attr("transform", "translate(" + width + "," + (height - 10) + ")")
+	.style("fill","white")
 	.text("Population in Millions");
 
 //Set up y axis label
@@ -91,6 +92,7 @@ wrapper.append("g")
 	.attr("text-anchor", "end")
 	.style("font-size", (mobileScreen ? 8 : 12) + "px")
 	.attr("transform", "translate(18, 0) rotate(-90)")
+	.style("fill","white")
 	.text("Count of Patients");
 
 ////////////////////////////////////////////////////////////// 
@@ -120,7 +122,7 @@ clipWrapper.selectAll(".clip")
 	.data(voronoiCells)
 	.enter().append("clipPath")
   	.attr("class", "clip")
-  	.attr("id", function(d) { return "clip-" + d.Year; })
+  	.attr("id", function(d) { return "clip-" + d.Count; })
   	.append("path")
   	.attr("class", "clip-path-circle")
   	.attr("d", function(d) { return "M" + d.join(",") + "Z"; });
@@ -216,7 +218,8 @@ if (!mobileScreen) {
 	var bubbleSizeLegend = legendWrapper.append("g")
 							.attr("transform", "translate(" + (legendWidth/2 - 30) + "," + (color.domain().length*rowHeight + 20) +")");
 	//Draw the bubble size legend
-	bubbleLegend(bubbleSizeLegend, rScale, legendSizes = [1e11,3e12,1e13], legendName = "Type US");		
+	bubbleLegend(bubbleSizeLegend, rScale, legendSizes = [1e11,3e12,1e13], legendName = "Bubble Size");	
+
 }//if !mobileScreen
 else {
 	d3.select("#legend").style("display","none");
