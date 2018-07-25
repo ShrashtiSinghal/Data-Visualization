@@ -105,8 +105,8 @@ wrapper.append("g")
 //(if you do not do this it would mean that you already see a tooltip when your mouse is still in the axis area, which is confusing)
 var voronoi = d3.geom.voronoi()
 	.x(function(d) { return xScale(d).Population; })
-	.y(function(d) { return yScale(d).Count; });
-	//.clipExtent([[100, 100], [width, height]]);
+	.y(function(d) { return yScale(d).Count; })
+	.clipExtent([[0, 0], [width, height]]);
 
 var voronoiCells = voronoi(countries);
 	
@@ -122,7 +122,7 @@ clipWrapper.selectAll(".clip")
 	.data(voronoiCells)
 	.enter().append("clipPath")
   	.attr("class", "clip")
-  	.attr("id", function(d) { return "clip-" + d.Count; })
+  	.attr("id", function(d) { return "clip-" + d.point.Type; })
   	.append("path")
   	.attr("class", "clip-path-circle")
   	.attr("d", function(d) { return "M" + d.join(",") + "Z"; });
@@ -135,8 +135,8 @@ var circleClipGroup = wrapper.append("g")
 var circlesOuter = circleClipGroup.selectAll(".circle-wrapper")
 	.data(countries.sort(function(a,b) { return b.Count > a.Count; }))
 	.enter().append("circle")
-	.attr("class", function(d,i) { return "circle-wrapper " + d.Year; })
-	.attr("clip-path", function(d) { return "url(#clip-" + d.Population + ")"; })
+	.attr("class", function(d,i) { return "circle-wrapper " + d.Count; })
+	.attr("clip-path", function(d) { return "url(#clip-" + d.Count + ")"; })
     .style("clip-path", function(d) { return "url(#clip-" + d.Count + ")"; })
 	.attr("cx", function(d) {return xScale(d.Population);})
 	.attr("cy", function(d) {return yScale(d.Count);})
@@ -170,7 +170,7 @@ circleGroup.selectAll("countries")
 if (!mobileScreen) {
 	//Legend			
 	var	legendMargin = {left: 5, top: 10, right: 5, bottom: 10},
-		legendWidth = 145,
+		legendWidth = 150,
 		legendHeight = 270;
 		
 	var svgLegend = d3.select("#legend").append("svg")
@@ -182,7 +182,7 @@ if (!mobileScreen) {
 		
 	var rectSize = 15, //dimensions of the colored square
 		rowHeight = 20, //height of a row in the legend
-		maxWidth = 144; //widht of each row
+		maxWidth = 150; //widht of each row
 		  
 	//Create container per rect/text pair  
 	var legend = legendWrapper.selectAll('.legendSquare')  	
@@ -229,7 +229,7 @@ else {
 /////////////////// Bubble Legend ////////////////////
 //////////////////////////////////////////////////////
 
-function bubbleLegend(wrapperVar, scale, sizes, titleName) {
+/*function bubbleLegend(wrapperVar, scale, sizes, titleName) {
 
 	var legendSize1 = sizes[0],
 		legendSize2 = sizes[1],
@@ -288,7 +288,7 @@ function bubbleLegend(wrapperVar, scale, sizes, titleName) {
         .attr('x', (legendCenter + legendLineLength + textPadding))
         .attr('y', (legendBottom-2*scale(legendSize1)))
 		.attr('dy', '0.25em')
-		.text("$ " + numFormat(Math.round(legendSize1/1e9)) + " B");
+		.text(numFormat(Math.round(legendSize1/1e9)) + " B");
 	wrapperVar.append("text")
         .attr('class',"legendText")
         .attr('x', (legendCenter + legendLineLength + textPadding))
@@ -300,9 +300,9 @@ function bubbleLegend(wrapperVar, scale, sizes, titleName) {
         .attr('x', (legendCenter + legendLineLength + textPadding))
         .attr('y', (legendBottom-2*scale(legendSize3)))
 		.attr('dy', '0.25em')
-		.text("$ " + numFormat(Math.round(legendSize3/1e9)) + " B");
+		.text(numFormat(Math.round(legendSize3/1e9)) + " B");
 		
-}//bubbleLegend
+}//bubbleLegend*/
 
 ///////////////////////////////////////////////////////////////////////////
 //////////////////// Hover function for the legend ////////////////////////
@@ -359,7 +359,7 @@ function showTooltip (d, i) {
 		trigger: 'manual',
 		html : true,
 		content: function() { 
-			return "<span style='font-size: 11px; text-align: center;'>" + d.Type + "</span>"; }
+			return "<span style='font-size: 14px; text-align: center; font-weight: bold;'>" + d.Type + ": "+"</span>" +d.Year; }
 	});
 	$(element).popover('show');
 
@@ -403,7 +403,7 @@ function showTooltip (d, i) {
 		.append("line")
 		.attr("class", "guide")
 		.attr("x1", x)
-		.attr("x2", -20)
+		.attr("x2", -25)
 		.attr("y1", y)
 		.attr("y2", y)
 		.style("stroke", color)
@@ -419,7 +419,7 @@ function showTooltip (d, i) {
 		.attr("dy", "0.35em")
 		.style("fill", color)
 		.style("opacity",  0)
-		.style("text-anchor", "end")
+		.style("text-anchor", "middle")
 		.text( d3.format(".1f")(d.Count) )
 		.transition().duration(200)
 		.style("opacity", 0.5);	
